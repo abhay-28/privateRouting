@@ -6,6 +6,21 @@ import Dashboard from "./Dashboard";
 import Four_Zero_Foure from "./Four_Zero_Foure";
 import "./App.css";
 import Navbar from "./Navbar";
+// token ? (
+//   <Route exact path={props.path} component={props.component} />
+// ) : (
+//   <Login {...props} />
+// );
+const PrivateRoute = (props) => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    return <Route exact={true} path={props.path} component={props.component} />;
+  } else {
+    return <Login {...props} />;
+  }
+};
+
 const App = () => {
   return (
     <div>
@@ -15,7 +30,7 @@ const App = () => {
           <Route path="/" component={Login} exact />
           <Route path="/Login" component={Login} />
           <Route path="/Register" component={Register} />
-          <Route path="/Dashboard" component={Dashboard} />
+          <PrivateRoute path="/Dashboard" component={Dashboard} />
           <Route component={Four_Zero_Foure} />
         </Switch>
       </BrowserRouter>

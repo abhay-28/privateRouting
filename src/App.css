@@ -7,6 +7,9 @@ body {
 a {
   text-decoration: none !important;
 }
+button a {
+  color: white;
+}
 /* Full-width input fields */
 input[type="text"],
 input[type="password"] {

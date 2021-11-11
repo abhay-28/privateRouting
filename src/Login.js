@@ -2,10 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  const onsubmit = () => {
-    // history.push("/Dashboard");
+  const onsubmitLogin = () => {
+    localStorage.setItem("token", (Math.random() * 1e32).toString(36));
+    props.history.push("/Dashboard");
   };
-
+  const onsubmitSignup = () => {
+    props.history.push("/Register");
+  };
   return (
     <div>
       <form action="/action_page.php" style={{ border: "1px solid #ccc" }}>
@@ -16,22 +19,21 @@ const Login = (props) => {
           <label htmlFor="email">
             <b>Email</b>
           </label>
-          <input type="text" placeholder="Enter Email" name="email" required />
+          <input type="text" placeholder="Enter Email" name="email" />
           <label htmlFor="psw">
             <b>Password</b>
           </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="psw"
-            required
-          />
+          <input type="password" placeholder="Enter Password" name="psw" />
           <div className="clearfix">
-            <button type="submit" className="cancelbtn">
-              <Link to="./Register">Sign Up</Link>
-            </button>
-            <button type="submit" className="signupbtn">
+            <button type="button" className="cancelbtn" onClick={onsubmitLogin}>
               Login
+            </button>
+            <button
+              type="submit"
+              className="signupbtn"
+              onClick={onsubmitSignup}
+            >
+              Sign Up
             </button>
           </div>
         </div>

@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 
-const Register = () => {
+const Register = (props) => {
+  const onsubmit = () => {
+    // localStorage.setItem();
+    props.history.push("/login");
+  };
   return (
     <div>
       <form style={{ border: "1px solid #ccc" }}>
@@ -13,16 +17,11 @@ const Register = () => {
           <label htmlFor="email">
             <b>Email</b>
           </label>
-          <input type="text" placeholder="Enter Email" name="email" required />
+          <input type="text" placeholder="Enter Email" name="email" />
           <label htmlFor="psw">
             <b>Password</b>
           </label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="psw"
-            required
-          />
+          <input type="password" placeholder="Enter Password" name="psw" />
           <label htmlFor="psw-repeat">
             <b>Repeat Password</b>
           </label>
@@ -30,7 +29,6 @@ const Register = () => {
             type="password"
             placeholder="Repeat Password"
             name="psw-repeat"
-            required
           />
           <label>
             <input
@@ -49,11 +47,11 @@ const Register = () => {
             .
           </p>
           <div className="clearfix">
-            <button type="submit" className="cancelbtn">
+            <button type="submit" className="signupbtn">
               <Link to="./Login">Login</Link>
             </button>
-            <button type="submit" className="signupbtn">
-              Sign Up
+            <button type="submit" className="cancelbtn" onClick={onsubmit}>
+              Submit
             </button>
           </div>
         </div>
